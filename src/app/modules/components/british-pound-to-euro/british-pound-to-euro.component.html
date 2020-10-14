@@ -1,0 +1,11 @@
+<p>british-pound-to-euro works!</p>
+
+<div *ngIf="dataService.currency">
+
+  <div class="col-sm-3">{{dataService.currency.base}}</div>
+  <div class="col-sm-3">{{dataService.currency.date}}</div>
+  <div class="col-sm-3">{{dataService.currency.rates | json}}</div>
+
+</div>
+
+<button class="refresh" (click)="dataService.getGBPtoEUR()">REFRESH</button>
