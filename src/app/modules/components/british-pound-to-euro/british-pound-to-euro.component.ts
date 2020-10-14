@@ -9,9 +9,13 @@ import {Currency} from '../../../model/currency/currency.module';
 })
 export class BritishPoundToEuroComponent implements OnInit {
 
+  images = ['../../../assets/uk.jpg', '../../../assets/sw.jpg', '../../../assets/us.jpg'];
+
   constructor(public dataService: DataService) { }
 
   ngOnInit(): void {
     this.dataService.getGBPtoEUR();
+    this.dataService.getCHFtoUSD();
+    this.dataService.getUSDtoGBP();
   }
 }

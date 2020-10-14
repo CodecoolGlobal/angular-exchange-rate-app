@@ -1,11 +1,54 @@
-<p>british-pound-to-euro works!</p>
 
-<div *ngIf="dataService.currency">
+<!--<div *ngIf="dataService.currency">-->
 
-  <div class="col-sm-3">{{dataService.currency.base}}</div>
-  <div class="col-sm-3">{{dataService.currency.date}}</div>
-  <div class="col-sm-3">{{dataService.currency.rates | json}}</div>
+<!--  <div class="col-sm-3">{{dataService.currency.base}}</div>-->
+<!--  <div class="col-sm-3">{{dataService.currency.date}}</div>-->
+<!--  <div class="col-sm-3">{{dataService.currency.rates | json}}</div>-->
 
+<!--</div>-->
+
+<!--<button class="refresh" (click)="dataService.getGBPtoEUR()">REFRESH</button>-->
+
+<div class="container">
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>BRITISH POUND TO EURO</h3>
+        <div *ngIf="dataService.currency">
+          <p>{{dataService.currency.base}}</p>
+          <p>{{dataService.currency.date}}</p>
+          <p>{{dataService.currency.rates | json}}</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>SWISS FRANK TO AMERICAN DOLLAR</h3>
+        <div *ngIf="dataService.currency">
+          <p>{{dataService.currency2.base}}</p>
+          <p>{{dataService.currency2.date}}</p>
+          <p>{{dataService.currency2.rates | json}}</p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>AMERICAN DOLLAR TO BRITISH POUND</h3>
+        <div *ngIf="dataService.currency">
+          <p>{{dataService.currency3.base}}</p>
+          <p>{{dataService.currency3.date}}</p>
+          <p>{{dataService.currency3.rates | json}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 </div>
-
-<button class="refresh" (click)="dataService.getGBPtoEUR()">REFRESH</button>

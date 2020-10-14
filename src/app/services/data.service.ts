@@ -10,6 +10,8 @@ import {Currency} from '../model/currency/currency.module';
 export class DataService {
 
   currency: Currency;
+  currency2: Currency;
+  currency3: Currency;
 
 
     constructor(private http: HttpClient) {
@@ -22,11 +24,15 @@ export class DataService {
     console.log(this.currency);
   }
 
-  // getGBPtoEUR(): Observable<any> {
-  //   return this.http.get('https://api.exchangeratesapi.io/latest?base=CHF&symbols=USD').pipe(map(result => this.result = result));
-  // }
-  //
-  // getGBPtoEUR(): Observable<any> {
-  //   return this.http.get('https://api.exchangeratesapi.io/latest?base=USD&symbols=GBP').pipe(map(result => this.result = result));
-  // }
+  getCHFtoUSD(): Subscription {
+    return this.http.get<Currency>('https://api.exchangeratesapi.io/latest?base=CHF&symbols=USD')
+      .subscribe((data: Currency) => this.currency2 = data);
+    console.log(this.currency);
+  }
+
+  getUSDtoGBP(): Subscription {
+    return this.http.get<Currency>('https://api.exchangeratesapi.io/latest?base=USD&symbols=GBP')
+      .subscribe((data: Currency) => this.currency3 = data);
+    console.log(this.currency);
+  }
 }

@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {DataService} from './services/data.service';
 import {HttpClientModule} from '@angular/common/http';
 import { BritishPoundToEuroComponent } from './modules/components/british-pound-to-euro/british-pound-to-euro.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { BritishPoundToEuroComponent } from './modules/components/british-pound-
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
