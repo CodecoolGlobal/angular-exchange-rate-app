@@ -1,7 +1,10 @@
+import {Observable} from 'rxjs';
+
 export class Currency {
 
   base: string;
-  date: string;
-  rates: object;
+  rate: string;
+  img: string;
+  amount: Observable<number>;
 
 }
