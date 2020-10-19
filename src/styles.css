@@ -1,8 +1,32 @@
-body {
-  height: 100%;
-  background-image: linear-gradient(to right, cornflowerblue, green);
-  /*background-repeat:no-repeat;*/
-  background-size: cover;
+html,body {
+  width:100vw;
+  height: 100vh;
+  margin: 0;
+}
+#videoBG {
+  position:fixed;
+  z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+  #videoBG {
+    width:100%;
+    height: auto;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  #videoBG {
+    width:auto;
+    height: 100%;
+  }
+}
+@media (max-width: 767px) {
+  #videoBG {
+    display: none;
+  }
+  body {
+    background: url('assets/poster.jpg');
+    background-size: cover;
+  }
 }
 
 * {
