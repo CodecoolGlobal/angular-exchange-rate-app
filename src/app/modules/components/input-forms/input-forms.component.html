@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center flex-column">
+
+  <select name="selectedBase" #baseInput>
+    <option *ngFor="let o of options">
+      {{o.name}}
+    </option>
+  </select>
+
+  <select name="selectedRate" #resultInput>
+    <option *ngFor="let o of options">
+      {{o.name}}
+    </option>
+  </select>
+  <button class="btn-danger" (click)="onAddCurrency(baseInput, resultInput)">ADD</button>
+
+</div>

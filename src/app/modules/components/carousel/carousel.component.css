@@ -34,29 +34,3 @@ h1,h3, p {
   margin-bottom: 3px;
   width: fit-content;
 }
-
-select, button {
-  margin-top: 15px;
-  border: solid black;
-  border-radius: 10px;
-  outline:none;
-}
-
-button:hover{
-
-  border: solid black;
-  border-radius: 10px;
-  animation-name: buttonGrow;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-
-}
-
-@keyframes buttonGrow {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.25);
-  }
-}

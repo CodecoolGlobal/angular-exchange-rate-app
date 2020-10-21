@@ -1,0 +1,18 @@
+<div class="container">
+  <ngb-carousel>
+    <ng-template ngbSlide *ngFor="let c of this.currencies">
+      <div class="picsum-img-wrapper">
+        <img [src]="c.img" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>{{c.base}} TO {{c.result}}</h3>
+        <div *ngIf="c">
+          <p>{{c.amount | async}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <app-input-forms
+    (currencyCreated)="onCurrencyAdded($event)">
+  </app-input-forms>
+</div>

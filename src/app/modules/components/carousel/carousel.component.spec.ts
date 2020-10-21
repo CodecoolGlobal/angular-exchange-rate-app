@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BritishPoundToEuroComponent } from './british-pound-to-euro.component';
+import { CarouselComponent } from './carousel.component';
 
 describe('BritishPoundToEuroComponent', () => {
-  let component: BritishPoundToEuroComponent;
-  let fixture: ComponentFixture<BritishPoundToEuroComponent>;
+  let component: CarouselComponent;
+  let fixture: ComponentFixture<CarouselComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BritishPoundToEuroComponent ]
+      declarations: [ CarouselComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BritishPoundToEuroComponent);
+    fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
