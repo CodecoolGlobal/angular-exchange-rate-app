@@ -1,6 +1,6 @@
 import {Observable} from 'rxjs';
 
-export class Currency {
+export interface Currency {
 
   base: string;
   result: string;
