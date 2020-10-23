@@ -9,21 +9,28 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import { InputFormsComponent } from './modules/components/input-forms/input-forms.component';
 import { CarouselItemComponent } from './modules/components/carousel-item/carousel-item.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SimpleNotificationsModule} from 'angular2-notifications';
+import { LineChartComponent } from './modules/components/line-chart/line-chart.component';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarouselComponent,
     InputFormsComponent,
-    CarouselItemComponent
+    CarouselItemComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
-  // providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

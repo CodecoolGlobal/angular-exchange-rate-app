@@ -9,13 +9,19 @@ import {Currency} from '../model/currency/currency';
 })
 export class DataService {
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   getSpecificExchange(base, result): Observable<object> {
     return this.http.get(`https://api.exchangeratesapi.io/latest?base=${base}&symbols=${result}`);
   }
+
   getAllData(): Observable<object> {
     return this.http.get(`https://api.exchangeratesapi.io/latest`);
+  }
+
+  getDataFromTo(base, result, start, end): Observable<object> {
+    console.log(this.http.get(`https://api.exchangeratesapi.io/history?start_at=${start}&end_at=${end}&symbols=${result}&base=${base}`));
+    return this.http.get(`https://api.exchangeratesapi.io/history?start_at=${start}&end_at=${end}&symbols=${result}&base=${base}`);
   }
 }

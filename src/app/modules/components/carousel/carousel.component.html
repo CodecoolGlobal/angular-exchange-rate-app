@@ -2,7 +2,7 @@
   <ngb-carousel>
     <ng-template ngbSlide *ngFor="let c of this.currencies">
       <div class="picsum-img-wrapper">
-        <img [src]="c.img" alt="Random first slide">
+        <img [src]="c.img" alt="SOME SLIDE">
       </div>
       <div class="carousel-caption">
         <h3>{{c.base}} TO {{c.result}}</h3>
@@ -13,6 +13,7 @@
     </ng-template>
   </ngb-carousel>
   <app-input-forms
-    (currencyCreated)="onCurrencyAdded($event)">
+    (currencyCreated)="onCurrencyAdded($event)"
+    (currencyRemoved)="onCurrencyRemoved($event)">
   </app-input-forms>
 </div>
