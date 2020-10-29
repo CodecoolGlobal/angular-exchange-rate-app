@@ -1,24 +1,24 @@
 import {Component, OnInit} from '@angular/core';
 import {Currency} from '../../../model/currency/currency';
-import {Observable, timer} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {timer} from 'rxjs';
 import {concatMap, map} from 'rxjs/operators';
-import {DataService} from '../../../services/data.service';
-import {NotificationsService} from 'angular2-notifications';
+import {DataService} from '../../../shared/services/apiData/data.service';
+import {CurrencyService} from '../../../shared/services/currencyArray/currency.service';
+import {NotificationService} from '../../../shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-british-pound-to-euro',
   templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.css']
+  styleUrls: ['./carousel.component.css'],
 })
 
 export class CarouselComponent implements OnInit {
-  currencies: Currency[] = [
-    {base: 'GBP', result: 'EUR', img: '../../../assets/GBP.jpg', amount: new Observable()},
-    {base: 'CHF', result: 'USD', img: '../../../assets/CHF.jpg', amount: new Observable()},
-    {base: 'USD', result: 'GBP', img: '../../../assets/USD.jpg', amount: new Observable()}];
+  currencies: Currency[];
 
-  constructor(private notificationsService: NotificationsService, private dataService: DataService) {
+  constructor(private notificationService: NotificationService,
+              private dataService: DataService,
+              private currencyService: CurrencyService) {
+    this.currencies = currencyService.getCurrencies();
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class CarouselComponent implements OnInit {
 
   onCurrencyAdded(currency: { base: string, result: string, img: string }): void {
     if (this.isInCurrencies(this.currencies, currency.base, currency.result)) {
-      this.showSuccessNotifications('ADDING WAS A SUCCESS!');
+      this.notificationService.showSuccessNotification('ADDING WAS A SUCCESS!');
       this.currencies.push({
         base: currency.base, result: currency.result, img: currency.img, amount: (timer(0, 1000).pipe(
           concatMap(_ => (this.dataService.getSpecificExchange(currency.base, currency.result))),
@@ -40,26 +40,8 @@ export class CarouselComponent implements OnInit {
         ))
       });
     } else {
-      this.showWarningNotifications('URL IS VALID BUT DOES NOT RETRIEVE ANYTHING!');
+      this.notificationService.showWarningNotification('URL IS VALID BUT DOES NOT RETRIEVE ANYTHING!');
     }
-  }
-
-  showSuccessNotifications(message): void {
-    this.notificationsService.success('SUCCESS', message, {
-      position: ['bottom', 'right'],
-      timeOut: 2000,
-      animate: 'fade',
-      showProgressBar: true
-    });
-  }
-
-  showWarningNotifications(message): void {
-    this.notificationsService.warn('WARNING', message, {
-      position: ['bottom', 'right'],
-      timeOut: 2000,
-      animate: 'fade',
-      showProgressBar: true
-    });
   }
 
   onCurrencyRemoved(currency: { base: string, result: string }): void {

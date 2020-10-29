@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import {interval, observable, Observable, Subscription, timer} from 'rxjs';
-import {Currency} from '../model/currency/currency';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

@@ -1,67 +1,24 @@
 <div class="d-flex align-items-center flex-column">
 
   <!--  <div *ngIf="exchange">-->
-  <select name="selectedBase" #baseInput>
-    <option *ngFor="let o of options">
-      {{o}}
-    </option>
-  </select>
 
-  <select name="selectedResult" #resultInput>
-    <option *ngFor="let o of options">
-      {{o}}
-    </option>
-  </select>
+  <form #f="ngForm">
+    <select name="selectedBase" ngModel="AUD">
+      <option *ngFor="let o of options">
+        {{o}}
+      </option>
+    </select>
 
-  <input id="imgInput" type="text" placeholder="SELECT IMG URL" name="selectedImgUrl" #imgInput>
+    <select name="selectedResult" ngModel="AUD">
+      <option *ngFor="let o of options">
+        {{o}}
+      </option>
+    </select>
 
-  <button class="btn-primary" (click)="onAddCurrency(baseInput, resultInput, imgInput)">ADD EXCHANGE</button>
+    <input id="imgInput" type="text" placeholder="SELECT IMG URL" name="selectedImgUrl" ngModel>
 
-  <button class="btn-danger" (click)="onRemoveCurrency(baseInput, resultInput)">REMOVE</button>
+    <button class="btn-primary" (click)="onAddCurrency()">ADD EXCHANGE</button>
 
-  <form class="form-inline">
-    <div class="form-group">
-      <div class="input-group">
-        <input class="form-control" placeholder="FROM"
-               name="dp" [ngModel]="model" ngbDatepicker #f="ngbDatepicker" #fromInput>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="f.toggle()" type="button"></button>
-        </div>
-      </div>
-    </div>
+    <button class="btn-danger" (click)="onRemoveCurrency()">REMOVE</button>
   </form>
-
-  <form class="form-inline">
-    <div class="form-group">
-      <div class="input-group">
-        <input class="form-control" placeholder="TO"
-               name="dp" [ngModel]="model" ngbDatepicker #t="ngbDatepicker" #toInput>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary calendar" (click)="t.toggle()" type="button"></button>
-        </div>
-      </div>
-    </div>
-  </form>
-  <hr/>
-
-  <button class="btn-primary" (click)="onAddTimeline(baseInput, resultInput, fromInput, toInput)">ADD TIMELINE</button>
-
-  <ngx-charts-line-chart
-    [view]="view"
-    [scheme]="colorScheme"
-    [legend]="legend"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxis]="xAxis"
-    [yAxis]="yAxis"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [timeline]="timeline"
-    [results]="multi"
-    (select)="onSelect($event)"
-    (activate)="onActivate($event)"
-    (deactivate)="onDeactivate($event)"
-  >
-  </ngx-charts-line-chart>
-
 </div>

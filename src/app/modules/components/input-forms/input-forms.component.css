@@ -6,6 +6,10 @@ select, button, input {
   text-align: center;
 }
 
+#imgInput {
+  width: 80%;
+}
+
 button:hover{
 
   border: solid black;
