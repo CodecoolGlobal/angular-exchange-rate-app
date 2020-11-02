@@ -27,7 +27,7 @@ export class LineChartComponent implements OnInit {
   showXAxisLabel = true;
   xAxisLabel = 'TIMELINE';
   yAxisLabel = 'EXCHANGE';
-  // timeline = true;
+  timeline = false;
 
   colorScheme = {
     domain: ['#ff0000']
