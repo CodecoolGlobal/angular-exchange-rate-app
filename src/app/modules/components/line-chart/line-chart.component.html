@@ -46,7 +46,7 @@
 <hr/>
 
 <div id="chart-background">
-<ngx-charts-line-chart *ngFor="let multi of multi"
+<ngx-charts-line-chart *ngIf="multi"
   [view]="view"
   [scheme]="colorScheme"
   [showXAxisLabel]="showXAxisLabel"
