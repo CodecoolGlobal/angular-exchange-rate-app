@@ -19,7 +19,6 @@ export class DataService {
   }
 
   getDataFromTo(base, result, start, end): Observable<object> {
-    console.log(this.http.get(`https://api.exchangeratesapi.io/history?start_at=${start}&end_at=${end}&symbols=${result}&base=${base}`));
     return this.http.get(`https://api.exchangeratesapi.io/history?start_at=${start}&end_at=${end}&symbols=${result}&base=${base}`);
   }
 }

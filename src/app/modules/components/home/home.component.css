@@ -7,6 +7,21 @@ h1,h2,h3, p {
   text-shadow: 1px 1px 20px black, 0 0 25px blue, 0 0 10px darkblue;
 }
 
-#paragraphs {
-  display: flex;
+h3 {
+  margin: 20px;
+}
+
+h3:hover {
+  animation-name: textGrow;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes textGrow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
 }

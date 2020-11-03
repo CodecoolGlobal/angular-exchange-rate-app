@@ -16,11 +16,13 @@ import {CurrencyService} from './shared/services/currencyArray/currency.service'
 import {NotificationService} from './shared/services/notification/notification.service';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './modules/components/home/home.component';
+import { ConverterComponent } from './modules/components/converter/converter.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'converter', component: ConverterComponent},
   { path: 'carousel', component: CarouselComponent},
-  { path: 'line', component: LineChartComponent},
+  { path: 'line', component: LineChartComponent}
 ];
 
 @NgModule({
@@ -30,6 +32,7 @@ const appRoutes: Routes = [
     InputFormsComponent,
     LineChartComponent,
     HomeComponent,
+    ConverterComponent,
   ],
   imports: [
     BrowserModule,

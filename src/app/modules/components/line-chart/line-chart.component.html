@@ -1,12 +1,12 @@
 <!--<hr/>-->
 <label for="exchange"><p>EXCHANGE</p></label>
 <form class=exchange id="exchange" #f="ngForm">
-  <select class="form-control-sm" name="selectedBase" ngModel="AUD">
+  <select class="form-control-sm" name="selectedBase" ngModel="AUD" #fromCurrency>
     <option *ngFor="let o of options">
       {{o}}
     </option>
   </select>
-  <select class="form-control-sm" name="selectedResult" ngModel="AUD">
+  <select class="form-control-sm" name="selectedResult" ngModel="AUD" #toCurrency>
     <option *ngFor="let o of options">
       {{o}}
     </option>
@@ -18,8 +18,8 @@
 <form class="form-inline">
   <div class="form-group">
     <div class="input-group">
-      <input class="form-control-sm" placeholder="FROM"
-             name="dp" [ngModel]="model" ngbDatepicker #a="ngbDatepicker" #fromInput>
+      <input class="form-control" placeholder="FROM"
+             name="dp" [ngModel]="model" ngbDatepicker #a="ngbDatepicker" #fromDate>
       <div class="input-group-append">
         <button class="btn btn-primary calendar" (click)="a.toggle()" type="button"></button>
       </div>
@@ -30,8 +30,8 @@
 <form class="form-inline">
   <div class="form-group">
     <div class="input-group">
-      <input class="form-control-sm" placeholder="TO"
-             name="dp" [ngModel]="model" ngbDatepicker #b="ngbDatepicker" #toInput>
+      <input class="form-control" placeholder="TO"
+             name="dp" [ngModel]="model" ngbDatepicker #b="ngbDatepicker" #toDate>
       <div class="input-group-append">
         <button class="btn btn-primary calendar" (click)="b.toggle()" type="button"></button>
       </div>
@@ -41,12 +41,12 @@
 </div>
 <hr/>
 
-<button class="btn-primary" (click)="onAddTimeline(fromInput, toInput)">DRAW CHART</button>
+<button class="btn-primary" (click)="onAddTimeline(fromCurrency, toCurrency, fromDate, toDate)">DRAW CHART</button>
 
 <hr/>
 
 <div id="chart-background">
-<ngx-charts-line-chart
+<ngx-charts-line-chart *ngFor="let multi of multi"
   [view]="view"
   [scheme]="colorScheme"
   [showXAxisLabel]="showXAxisLabel"
