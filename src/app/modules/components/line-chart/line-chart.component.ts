@@ -6,6 +6,7 @@ import {DataService} from '../../../shared/services/apiData/data.service';
 import {HistRate} from '../../../model/histrate/histRate';
 import {Data} from '@angular/router';
 import {Exchange} from '../../../model/exchange/exchange';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-line-chart',
@@ -13,10 +14,12 @@ import {Exchange} from '../../../model/exchange/exchange';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
+
+  @ViewChild('f', { static: false }) currencyInputs: NgForm;
   options: string[];
   exchange: Exchange;
+  // multi = [];
   multi = [];
-  // multi = [{name: 'AUD', series: [{name: '1990', value: 62000000}, {name: '2010', value: 73000000}, {name: '2011', value: 789400000}]}];
   histExchange: HistExchange;
   series: Ser[] = [];
   model;
@@ -27,8 +30,8 @@ export class LineChartComponent implements OnInit {
   showYAxisLabel = true;
   showXAxisLabel = true;
   xAxisLabel = 'TIMELINE';
-  yAxisLabel = 'EXCHANGE';
-  timeline = true;
+  // yAxisLabel = fromCurrency;
+  timeline = false;
 
   colorScheme = {
     domain: ['#ff0000']
@@ -45,6 +48,7 @@ export class LineChartComponent implements OnInit {
                 toCurrency: HTMLSelectElement,
                 fromDate: HTMLInputElement,
                 toDate: HTMLInputElement): void {
+    // this.multi = null;
     const timeline$ = this.dataService.getDataFromTo(fromCurrency.value, toCurrency.value, fromDate.value, toDate.value);
     timeline$.subscribe((data: HistExchange) => {
       this.histExchange = data;
@@ -57,7 +61,8 @@ export class LineChartComponent implements OnInit {
         return new Date(val1.name) - new Date(val2.name); });
     });
     // this.series.sort((a, b) => (new Date(a.name) - new Date(b.name));
-    this.multi.push({name: fromCurrency.value, series: this.series});
+    this.multi = [{name: fromCurrency.value, series: this.series}];
+    this.series = [];
     console.log(this.multi);
     // this.chart.nativeElement.getAttribute('[result]').value = this.multi;
     // this.multi.sort((a, b) => {

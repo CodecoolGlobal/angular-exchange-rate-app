@@ -45,7 +45,7 @@
 
 <hr/>
 
-<div id="chart-background">
+<div id="chart-background" *ngIf="multi">
 <ngx-charts-line-chart *ngIf="multi"
   [view]="view"
   [scheme]="colorScheme"
@@ -54,7 +54,7 @@
   [xAxis]="xAxis"
   [yAxis]="yAxis"
   [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
+  [yAxisLabel]= "fromCurrency.value + ' TO ' + toCurrency.value"
   [timeline]="timeline"
   [results]="multi">
 </ngx-charts-line-chart>
