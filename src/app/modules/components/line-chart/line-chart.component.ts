@@ -18,7 +18,6 @@ export class LineChartComponent implements OnInit {
   @ViewChild('f', { static: false }) currencyInputs: NgForm;
   options: string[];
   exchange: Exchange;
-  // multi = [];
   multi = [];
   histExchange: HistExchange;
   series: Ser[] = [];
@@ -48,7 +47,6 @@ export class LineChartComponent implements OnInit {
                 toCurrency: HTMLSelectElement,
                 fromDate: HTMLInputElement,
                 toDate: HTMLInputElement): void {
-    // this.multi = null;
     const timeline$ = this.dataService.getDataFromTo(fromCurrency.value, toCurrency.value, fromDate.value, toDate.value);
     timeline$.subscribe((data: HistExchange) => {
       this.histExchange = data;

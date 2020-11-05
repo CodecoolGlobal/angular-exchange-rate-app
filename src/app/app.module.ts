@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CarouselComponent} from './modules/components/carousel/carousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputFormsComponent} from './modules/components/input-forms/input-forms.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
@@ -39,6 +39,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     SimpleNotificationsModule.forRoot(),
     BrowserAnimationsModule,
     NgxChartsModule,

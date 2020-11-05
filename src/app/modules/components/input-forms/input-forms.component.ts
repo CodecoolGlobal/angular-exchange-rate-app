@@ -22,8 +22,7 @@ export class InputFormsComponent implements OnInit {
   @ViewChild('f', { static: false }) signupForm: NgForm;
 
   constructor(private notificationService: NotificationService,
-              private dataService: DataService,
-              private currencyService: CurrencyService) {
+              private dataService: DataService) {
   }
 
   ngOnInit(): void {

@@ -1,1 +1,22 @@
-<p>converter works!</p>
+<div class="d-flex align-items-center flex-column">
+
+  <!--  <div *ngIf="exchange">-->
+
+  <form [formGroup]="dataForm" (ngSubmit)="calculateCurrency()">
+    <select formControlName="selectedBase" ngModel="AUD">
+      <option *ngFor="let o of options">
+        {{o}}
+      </option>
+    </select>
+
+    <select formControlName="selectedResult" ngModel="AUD">
+      <option *ngFor="let o of options">
+        {{o}}
+      </option>
+    </select>
+
+    <input id="imgInput" type="text" placeholder="SET AMOUNT" value='{{value}}' formControlName="selectedAmount" ngModel>
+
+  </form>
+    <button class="btn-primary" (click)="calculateCurrency()">CALCULATE</button>
+</div>
