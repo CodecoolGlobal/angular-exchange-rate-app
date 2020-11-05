@@ -18,10 +18,10 @@ export class CarouselComponent implements OnInit {
   constructor(private notificationService: NotificationService,
               private dataService: DataService,
               private currencyService: CurrencyService) {
-    this.currencies = currencyService.getCurrencies();
   }
 
   ngOnInit(): void {
+    this.currencies = this.currencyService.getCurrencies();
     for (const currency of this.currencies) {
       currency.amount = (timer(0, 1000).pipe(
         concatMap(_ => (this.dataService.getSpecificExchange(currency.base, currency.result))),

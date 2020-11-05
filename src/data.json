@@ -1,0 +1,23 @@
+[
+  "currencies":
+  [
+    {
+      "base": "GBP",
+      "result": "EUR",
+      "img": "../../../assets/GBP.jpg",
+      "amount": null
+    },
+    {
+      "base": "CHF",
+      "result": "USD",
+      "img": "../../../assets/CHF.jpg",
+      "amount": null
+    },
+    {
+      "base": "USD",
+      "result": "GBP",
+      "img": "../../../assets/USD.jpg",
+      "amount": null
+    }
+  ]
+]

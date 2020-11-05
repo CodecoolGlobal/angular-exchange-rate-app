@@ -2,14 +2,14 @@
 
   <!--  <div *ngIf="exchange">-->
 
-  <form [formGroup]="dataForm" (ngSubmit)="calculateCurrency()">
+  <form id="dataInputs" [formGroup]="dataForm" (ngSubmit)="calculateCurrency()">
     <select formControlName="selectedBase" ngModel="AUD">
       <option *ngFor="let o of options">
         {{o}}
       </option>
     </select>
 
-    <select formControlName="selectedResult" ngModel="AUD">
+    <select id="resultInput" formControlName="selectedResult" ngModel="AUD">
       <option *ngFor="let o of options">
         {{o}}
       </option>
