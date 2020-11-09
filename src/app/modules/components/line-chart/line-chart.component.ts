@@ -22,7 +22,7 @@ export class LineChartComponent implements OnInit {
   histExchange: HistExchange;
   series: Ser[] = [];
   model;
-  view: any[] = [700, 300];
+  view: any[] = [1000, 300];
   animations = true;
   xAxis = true;
   yAxis = true;
