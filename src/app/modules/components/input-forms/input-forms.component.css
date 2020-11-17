@@ -1,18 +1,18 @@
-select, button, input {
-  margin-top: 15px;
-  border: solid black;
-  border-radius: 10px;
-  outline:none;
-  text-align: center;
-}
-
 #imgInput {
   width: 80%;
 }
 
+button {
+  margin-top: 15px;
+  /*border: solid black;*/
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+}
+
 button:hover{
 
-  border: solid black;
+  /*border: solid black;*/
   border-radius: 10px;
   animation-name: buttonGrow;
   animation-duration: 0.5s;
@@ -26,4 +26,12 @@ button:hover{
   to {
     transform: scale(1.25);
   }
+}
+
+app-currencies {
+  margin-bottom: 10px;
+}
+
+select, input {
+  outline: none;
 }

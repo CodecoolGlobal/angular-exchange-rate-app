@@ -9,5 +9,5 @@ import {NotificationService} from './shared/services/notification/notification.s
   providers: [CurrencyService, NotificationService]
 })
 export class AppComponent {
-  title = 'angular-exchange-rate-app';
+  isNavbarCollapsed = true;
 }

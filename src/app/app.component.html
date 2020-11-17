@@ -1,31 +1,18 @@
 <!--  <div class="row">-->
 <!--    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">-->
 <div class="container">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-dark bg-primary fixed-top navbar-expand-sm justify-content-center text-white" style="border-bottom: black solid 2px">
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">HOME <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" routerLink="converter">CONVERTER</a>
-        <a class="nav-item nav-link" routerLink="carousel">SLIDESHOW</a>
-        <a class="nav-item nav-link" routerLink="line">LINE-CHART</a>
-        <!--    <a class="nav-link disabled" href="#">Disabled</a>-->
-      </div>
+    <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse justify-content-center" id="navbarSupportedContent">
+      <a class="nav-item nav-link" routerLink="/">HOME <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" routerLink="converter">CONVERTER</a>
+      <a class="nav-item nav-link" routerLink="carousel">SLIDESHOW</a>
+      <a class="nav-item nav-link" routerLink="line">LINE-CHART</a>
     </div>
   </nav>
   <div id="rout">
     <router-outlet></router-outlet>
   </div>
 </div>
-<!--</div>-->
-
-
-<!--  </div>-->
-<!--</div>-->
-<!--<app-british-pound-to-euro></app-british-pound-to-euro>-->
-<!--<simple-notifications></simple-notifications>-->
-<!--<app-line-chart></app-line-chart>-->

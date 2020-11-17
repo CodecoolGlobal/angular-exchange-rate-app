@@ -1,12 +1,12 @@
 <ngb-carousel>
-  <ng-template ngbSlide *ngFor="let c of this.currencies">
+  <ng-template ngbSlide *ngFor="let currency of this.currencies">
     <div class="picsum-img-wrapper">
-      <img [src]="c.img" alt="SOME SLIDE">
+      <img [src]="currency.img" alt="SOME SLIDE">
     </div>
     <div class="carousel-caption">
-      <h3>{{c.base}} TO {{c.result}}</h3>
-      <div *ngIf="c">
-        <p>{{c.amount | async}}</p>
+      <h3>{{currency.base}} TO {{currency.result}}</h3>
+      <div *ngIf="currency">
+        <p>{{currency.amount | async}}</p>
       </div>
     </div>
   </ng-template>

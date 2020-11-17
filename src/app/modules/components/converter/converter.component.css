@@ -1,7 +1,32 @@
-#resultInput {
-  margin-right: 10px;
+app-currencies {
+  margin-bottom: 10px;
 }
 
-#dataInputs {
+input {
   margin-bottom: 10px;
+}
+
+button {
+  /*border: solid black;*/
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+}
+
+button:hover{
+
+  /*border: solid black;*/
+  border-radius: 10px;
+  animation-name: buttonGrow;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes buttonGrow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.25);
+  }
 }

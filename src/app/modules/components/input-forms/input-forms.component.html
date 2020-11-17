@@ -1,24 +1,6 @@
 <div class="d-flex align-items-center flex-column">
-
-  <!--  <div *ngIf="exchange">-->
-
-  <form #f="ngForm">
-    <select name="selectedBase" ngModel="AUD">
-      <option *ngFor="let o of options">
-        {{o}}
-      </option>
-    </select>
-
-    <select name="selectedResult" ngModel="AUD">
-      <option *ngFor="let o of options">
-        {{o}}
-      </option>
-    </select>
-
-    <input id="imgInput" type="text" placeholder="SELECT IMG URL" name="selectedImgUrl" ngModel>
-
+  <app-currencies #fromToCurrencies></app-currencies>
+    <input #imgUrl id="imgInput" type="text" placeholder="SELECT IMG URL" name="selectedImgUrl" ngModel>
     <button class="btn-primary" (click)="onAddCurrency()">ADD EXCHANGE</button>
-
     <button class="btn-danger" (click)="onRemoveCurrency()">REMOVE</button>
-  </form>
 </div>

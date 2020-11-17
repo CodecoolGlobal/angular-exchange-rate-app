@@ -1,9 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {DataService} from '../../../shared/services/apiData/data.service';
+import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {NotificationService} from '../../../shared/services/notification/notification.service';
 import {CurrencyService} from '../../../shared/services/currencyArray/currency.service';
 import {Exchange} from '../../../model/exchange/exchange';
-import {NgForm} from '@angular/forms';
+import {CurrenciesComponent} from '../../../shared/components/currencies/currencies.component';
 
 @Component({
   selector: 'app-input-forms',
@@ -12,41 +11,39 @@ import {NgForm} from '@angular/forms';
   providers: [CurrencyService, NotificationService]
 })
 
-export class InputFormsComponent implements OnInit {
-  options: string[];
+export class InputFormsComponent {
   exchange: Exchange;
 
   @Output() currencyCreated = new EventEmitter<{ base: string, result: string, img: string }>();
   @Output() currencyRemoved = new EventEmitter<{ base: string, result: string }>();
 
-  @ViewChild('f', { static: false }) signupForm: NgForm;
+  @ViewChild('fromToCurrencies') fromToContent: CurrenciesComponent;
+  @ViewChild('imgUrl') imgUrl: ElementRef;
 
-  constructor(private notificationService: NotificationService,
-              private dataService: DataService) {
-  }
-
-  ngOnInit(): void {
-    this.getKeysFromApi();
+  constructor(private notificationService: NotificationService) {
   }
 
   onAddCurrency(): void {
-    const dupa = this.signupForm.value;
+    this.notificationService.showErrorNotifications('INPUTS CANNOT HAVE THE SAME VALUE!');
+    const fromTo = this.fromToContent.currenciesForm.value;
+    const from = fromTo.selectedFrom;
+    const to = fromTo.selectedTo;
     const pattern = this.getUrlFormat();
-    if (dupa.selectedBase === dupa.selectedResult) {
+    if (from === to) {
       this.notificationService.showErrorNotifications('INPUTS CANNOT HAVE THE SAME VALUE!');
-    } else if (!pattern.test(dupa.selectedImgUrl)) {
+    } else if (!pattern.test(this.imgUrl.nativeElement.value)) {
       this.notificationService.showErrorNotifications('INVALID URL!');
     } else {
-      this.currencyCreated.emit({base: dupa.selectedBase, result: dupa.selectedResult, img: dupa.selectedImgUrl});
+      this.currencyCreated.emit({base: from, result: to, img: this.imgUrl.nativeElement.value});
     }
   }
 
   onRemoveCurrency(): void {
-    const dupa = this.signupForm.value;
-    if (dupa.selectedBase === dupa.selectedResult) {
+    const fromTo = this.fromToContent.currenciesForm.value;
+    if (fromTo.selectedFrom === fromTo.selectedTo) {
       this.notificationService.showErrorNotifications('INPUTS CANNOT HAVE THE SAME VALUE!');
     } else {
-      this.currencyRemoved.emit({base: dupa.selectedBase, result: dupa.selectedResult});
+      this.currencyRemoved.emit({base: fromTo.selectedFrom, result: fromTo.selectedTo});
     }
   }
 
@@ -57,14 +54,5 @@ export class InputFormsComponent implements OnInit {
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
       '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
       '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
-  }
-
-  getKeysFromApi(): void {
-    this.dataService.getAllData().subscribe((data: Exchange) => {
-      this.exchange = data;
-      this.options = Object.keys(this.exchange.rates);
-      this.options.push('EUR');
-      this.options.sort();
-    });
   }
 }

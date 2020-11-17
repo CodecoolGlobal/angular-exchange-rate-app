@@ -8,18 +8,6 @@ ngx-charts-line-chart {
   justify-content: center;
 }
 
-/*.exchange {*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  justify-content: space-evenly;*/
-/*}*/
-
-button {
-  border: solid black;
-  border-radius: 10px;
-  outline:none;
-}
-
 #chart-background {
   background-color: #0080a1;
   border: solid black;
@@ -34,9 +22,19 @@ p {
   width: fit-content;
 }
 
+.form-control {
+  max-width: 110px;
+}
+
+button {
+  /*border: solid black;*/
+  border-radius: 10px;
+  outline: none;
+  text-align: center;
+}
+
 button:hover{
 
-  border: solid black;
   border-radius: 10px;
   animation-name: buttonGrow;
   animation-duration: 0.5s;
@@ -50,8 +48,4 @@ button:hover{
   to {
     transform: scale(1.25);
   }
-}
-
-.form-control {
-  max-width: 110px;
 }

@@ -1,88 +1,69 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HistExchange} from '../../../model/histExchange/histExchange';
-import {NotificationsService} from 'angular2-notifications';
 import {Ser} from '../../../model/data/ser';
 import {DataService} from '../../../shared/services/apiData/data.service';
-import {HistRate} from '../../../model/histrate/histRate';
-import {Data} from '@angular/router';
 import {Exchange} from '../../../model/exchange/exchange';
-import {NgForm} from '@angular/forms';
+import {CurrenciesComponent} from '../../../shared/components/currencies/currencies.component';
+import {DateComponent} from '../../../shared/components/date/date.component';
 
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css']
 })
-export class LineChartComponent implements OnInit {
-
-  @ViewChild('f', { static: false }) currencyInputs: NgForm;
-  options: string[];
+export class LineChartComponent {
+  @ViewChild('fromToContent') fromToContent: CurrenciesComponent;
+  @ViewChild('fromDate') fromDate: DateComponent;
+  @ViewChild('toDate') toDate: DateComponent;
+  base = 'CURRENCY';
+  result = 'CURRENCY';
   exchange: Exchange;
   multi = [];
   histExchange: HistExchange;
   series: Ser[] = [];
-  model;
-  view: any[] = [1000, 300];
+  view: any[] = [560, 240];
   animations = true;
   xAxis = true;
   yAxis = true;
   showYAxisLabel = true;
   showXAxisLabel = true;
-  xAxisLabel = 'TIMELINE';
-  // yAxisLabel = fromCurrency;
+  xAxisLabel = 'HISTORICAL TIMELINE';
   timeline = false;
+  yScaleMin: number;
+  values: number[] = [];
 
   colorScheme = {
-    domain: ['#ff0000']
+    domain: ['#630000']
   };
 
   constructor(private dataService: DataService) {
   }
 
-  ngOnInit(): void {
-    this.getKeysFromApi();
-  }
-
-  onAddTimeline(fromCurrency: HTMLSelectElement,
-                toCurrency: HTMLSelectElement,
-                fromDate: HTMLInputElement,
-                toDate: HTMLInputElement): void {
-    const timeline$ = this.dataService.getDataFromTo(fromCurrency.value, toCurrency.value, fromDate.value, toDate.value);
+  onAddTimeline(): void {
+    const inputs = this.fromToContent.currenciesForm.value;
+    const base = inputs.selectedFrom;
+    const result = inputs.selectedTo;
+    this.base = base;
+    this.result = result;
+    const timeline$ = this.dataService.getDataFromTo(base, result,
+      this.fromDate.selectDate.nativeElement.value,
+      this.toDate.selectDate.nativeElement.value);
     timeline$.subscribe((data: HistExchange) => {
       this.histExchange = data;
       const dates = Object.keys(this.histExchange.rates);
       const rates = Object.values(this.histExchange.rates);
       for (let i = 0; i < dates.length; i++) {
-        this.series.push({name: dates[i], value: rates[i][toCurrency.value]});
+        this.series.push({name: dates[i], value: rates[i][result]});
+        this.values.push(rates[i][result]);
       }
+      this.yScaleMin = Math.min(...this.values);
       this.series.sort((val1, val2) => {// @ts-ignore
-        return new Date(val1.name) - new Date(val2.name); });
+        return new Date(val1.name) - new Date(val2.name);
+      });
     });
-    // this.series.sort((a, b) => (new Date(a.name) - new Date(b.name));
-    this.multi = [{name: fromCurrency.value, series: this.series}];
+    this.multi = [{name: base, series: this.series}];
     this.series = [];
+    this.yScaleMin = 0;
     console.log(this.multi);
-    // this.chart.nativeElement.getAttribute('[result]').value = this.multi;
-    // this.multi.sort((a, b) => {
-    //   return new Date((a.series.name) as any - (new Date(b.series.name) as any));
-    // });
-
-    // this.chart.update();
-  }
-
-  // get sortData(): Ser[]{
-  //   return this.series.sort((a, b) => {
-  //     // tslint:disable-next-line:radix
-  //     return (parseInt(b.name.replace(/-/g, ''))) - (parseInt(a.name.replace(/-/g, '')));
-  //   });
-  // }
-
-  getKeysFromApi(): void {
-    this.dataService.getAllData().subscribe((data: Exchange) => {
-      this.exchange = data;
-      this.options = Object.keys(this.exchange.rates);
-      this.options.push('EUR');
-      this.options.sort();
-    });
   }
 }

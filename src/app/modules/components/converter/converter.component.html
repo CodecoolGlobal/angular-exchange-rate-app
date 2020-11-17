@@ -1,22 +1,6 @@
 <div class="d-flex align-items-center flex-column">
-
-  <!--  <div *ngIf="exchange">-->
-
-  <form id="dataInputs" [formGroup]="dataForm" (ngSubmit)="calculateCurrency()">
-    <select formControlName="selectedBase" ngModel="AUD">
-      <option *ngFor="let o of options">
-        {{o}}
-      </option>
-    </select>
-
-    <select id="resultInput" formControlName="selectedResult" ngModel="AUD">
-      <option *ngFor="let o of options">
-        {{o}}
-      </option>
-    </select>
-
-    <input id="imgInput" type="text" placeholder="SET AMOUNT" value='{{value}}' formControlName="selectedAmount" ngModel>
-
-  </form>
+  <hr/>
+    <app-currencies #fromToContent></app-currencies>
+    <input #amount id="imgInput" type="text" placeholder="SET AMOUNT" value='{{value}}' ngModel>
     <button class="btn-primary" (click)="calculateCurrency()">CALCULATE</button>
 </div>
