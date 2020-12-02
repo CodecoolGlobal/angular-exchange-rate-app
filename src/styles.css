@@ -20,6 +20,10 @@
   padding: 20px;
 }
 
+.btn {
+  border: solid black 4px;
+}
+
 /* Style the button used to pause/play the video */
 /*#myBtn {*/
 /*  width: 200px;*/
