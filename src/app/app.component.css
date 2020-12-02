@@ -1,8 +1,24 @@
+@font-face {
+  font-family: 'Showcard-Gothic';
+  src: url('../assets/ttfs/showg.ttf');
+}
+
 .container {
   text-align: center;
   display: flex;
   /*align-items: center;*/
   justify-content: center;
+  font-family: Showcard-Gothic;
+  font-size: larger;
+}
+
+.navbar {
+  background: rgb(0,91,255);
+  background: linear-gradient(90deg, rgba(0,91,255,1) 0%, rgba(255,76,0,1) 50%, rgba(0,125,255,1) 100%);
+  box-shadow: 0 3px 5px -1px rgb(0,0,0), 0 6px 10px 0 rgba(0,0,0,0.43), 0 1px 18px 0 rgba(0,0,0,0.17);
+  font-family: Showcard-Gothic;
+  font-size: larger;
+  letter-spacing: 3px;
 }
 
 #rout {
@@ -20,3 +36,5 @@ nav {
 a {
   color: white;
 }
+
+

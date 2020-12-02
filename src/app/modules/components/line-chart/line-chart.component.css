@@ -1,3 +1,13 @@
+/*.container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: center;*/
+/*}*/
+
+.container {
+  margin-top: 10px;
+}
+
 ngx-charts-line-chart {
   border: solid black;
 }
@@ -9,8 +19,11 @@ ngx-charts-line-chart {
 }
 
 #chart-background {
-  background-color: #0080a1;
+  background-color: #009bc4;
   border: solid black;
+  border-radius: 20px;
+  font-family: "Times New Roman";
+  font-weight: bold;
 }
 
 p {
@@ -47,5 +60,17 @@ button:hover{
   }
   to {
     transform: scale(1.25);
+  }
+}
+
+@media (max-width: 540px) {
+  #chart-background {
+    transform: scale(0.75);
+  }
+}
+
+@media (max-width: 280px) {
+  #chart-background {
+    transform: scale(0.50);
   }
 }

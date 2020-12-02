@@ -1,13 +1,15 @@
 <form id="dataInputs" [formGroup]="currenciesForm">
 
-  <select formControlName="selectedFrom" ngModel="AUD">
+  <div class="forms">
+  <select class="form-control" formControlName="selectedFrom" ngModel="AUD">
     <option *ngFor="let option of options">
       {{option}}
     </option>
   </select>
-  <select formControlName="selectedTo" ngModel="AUD">
+  <select class="form-control" formControlName="selectedTo" ngModel="AUD">
     <option *ngFor="let option of options">
       {{option}}
     </option>
   </select>
+  </div>
 </form>

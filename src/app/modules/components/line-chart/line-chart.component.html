@@ -1,26 +1,27 @@
 <!--<p>EXCHANGE</p>-->
-<app-currencies #fromToContent></app-currencies>
-<hr/>
-<!--<label for="timeline"><p>HISTORICAL TIMELINE</p></label>-->
-<div class="timeline" id="timeline">
-  <app-date #fromDate></app-date>
-  <app-date #toDate></app-date>
-</div>
-<hr/>
-<button class="btn-primary" (click)="onAddTimeline()">DRAW CHART</button>
-<hr/>
-<div id="chart-background">
-  <ngx-charts-line-chart
-    [view]="view"
-    [scheme]="colorScheme"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxis]="xAxis"
-    [yAxis]="yAxis"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="base + ' TO ' + result"
-    [timeline]="timeline"
-    [results]="multi"
-    [yScaleMin]="yScaleMin">
-  </ngx-charts-line-chart>
+<div class="container">
+  <app-currencies #fromToContent></app-currencies>
+  <hr/>
+  <!--<label for="timeline"><p>HISTORICAL TIMELINE</p></label>-->
+  <div class="timeline" id="timeline">
+    <app-date #fromDate></app-date>
+    <app-date #toDate></app-date>
+  </div>
+  <hr/>
+  <button class="btn-primary" (click)="onAddTimeline()">DRAW CHART</button>
+  <hr/>
+  <div id="chart-background">
+    <ngx-charts-line-chart
+      [view]="view"
+      [scheme]="colorScheme"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [yAxisLabel]="base + ' TO ' + result"
+      [timeline]="timeline"
+      [results]="multi"
+      [yScaleMin]="yScaleMin">
+    </ngx-charts-line-chart>
+  </div>
 </div>

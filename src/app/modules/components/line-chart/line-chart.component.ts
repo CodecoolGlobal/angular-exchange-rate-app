@@ -27,7 +27,7 @@ export class LineChartComponent {
   yAxis = true;
   showYAxisLabel = true;
   showXAxisLabel = true;
-  xAxisLabel = 'HISTORICAL TIMELINE';
+  // xAxisLabel = 'HISTORICAL TIMELINE';
   timeline = false;
   yScaleMin: number;
   values: number[] = [];
