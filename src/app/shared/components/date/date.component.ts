@@ -1,6 +1,4 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-import {InputFormsComponent} from '../../../modules/components/input-forms/input-forms.component';
 
 @Component({
   selector: 'app-date',

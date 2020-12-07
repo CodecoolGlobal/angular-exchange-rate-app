@@ -45,7 +45,7 @@ export class CarouselComponent implements OnInit {
   }
 
   onCurrencyRemoved(currency: { base: string, result: string }): void {
-    this.currencies = this.currencies.filter(({base, result}) => base !== currency.base && result !== currency.result);
+    this.currencies = this.currencies.filter(({base, result}) => base !== currency.base || result !== currency.result);
   }
 
   isInCurrencies(currencies, base, result): boolean {

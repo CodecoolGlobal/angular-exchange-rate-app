@@ -1,6 +1,6 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
 import {Currency} from '../../../model/currency/currency';
-import {Observable, timer} from 'rxjs';
+import {Subscription, timer} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {concatMap, map} from 'rxjs/operators';
 import {DataService} from '../apiData/data.service';
@@ -8,19 +8,16 @@ import {DataService} from '../apiData/data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CurrencyService {
+export class CurrencyService implements OnDestroy {
+  currencyQuery: Subscription;
 
   constructor(private http: HttpClient, private dataService: DataService) {
   }
 
   private currencies: Currency[] = [];
-  //   [{base: 'GBP', result: 'EUR', img: '../../../assets/GBP.jpg', amount: new Observable()},
-  //   {base: 'CHF', result: 'USD', img: '../../../assets/CHF.jpg', amount: new Observable()},
-  //   {base: 'USD', result: 'GBP', img: '../../../assets/USD.jpg', amount: new Observable()}];
 
   getCurrencies(): Currency[] {
-    this.http.get('https://currencies-635ed.firebaseio.com/.json').subscribe(currencies => {
-      // console.log(typeof Object(currencies));
+    this.currencyQuery = this.http.get('https://currencies-635ed.firebaseio.com/.json').subscribe(currencies => {
       const currenciesObject = Object(currencies);
       for (let i = 0; i < 3; i++) {
         this.currencies[i] = {
@@ -37,7 +34,7 @@ export class CurrencyService {
     return this.currencies;
   }
 
-  addCurrency(currency: Currency): void {
-    this.currencies.push(currency);
+  ngOnDestroy(): void {
+    this.currencyQuery.unsubscribe();
   }
 }

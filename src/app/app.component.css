@@ -6,7 +6,6 @@
 .container {
   text-align: center;
   display: flex;
-  /*align-items: center;*/
   justify-content: center;
   font-family: Showcard-Gothic;
   font-size: larger;

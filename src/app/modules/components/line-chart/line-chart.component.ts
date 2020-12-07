@@ -5,6 +5,7 @@ import {DataService} from '../../../shared/services/apiData/data.service';
 import {Exchange} from '../../../model/exchange/exchange';
 import {CurrenciesComponent} from '../../../shared/components/currencies/currencies.component';
 import {DateComponent} from '../../../shared/components/date/date.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-line-chart',
@@ -12,6 +13,7 @@ import {DateComponent} from '../../../shared/components/date/date.component';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent {
+  chartsQuery: Subscription;
   @ViewChild('fromToContent') fromToContent: CurrenciesComponent;
   @ViewChild('fromDate') fromDate: DateComponent;
   @ViewChild('toDate') toDate: DateComponent;
@@ -27,7 +29,6 @@ export class LineChartComponent {
   yAxis = true;
   showYAxisLabel = true;
   showXAxisLabel = true;
-  // xAxisLabel = 'HISTORICAL TIMELINE';
   timeline = false;
   yScaleMin: number;
   values: number[] = [];
@@ -48,7 +49,7 @@ export class LineChartComponent {
     const timeline$ = this.dataService.getDataFromTo(base, result,
       this.fromDate.selectDate.nativeElement.value,
       this.toDate.selectDate.nativeElement.value);
-    timeline$.subscribe((data: HistExchange) => {
+    this.chartsQuery = timeline$.subscribe((data: HistExchange) => {
       this.histExchange = data;
       const dates = Object.keys(this.histExchange.rates);
       const rates = Object.values(this.histExchange.rates);

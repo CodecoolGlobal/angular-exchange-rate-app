@@ -4,15 +4,12 @@
 
 button {
   margin-top: 15px;
-  /*border: solid black;*/
   border-radius: 10px;
   outline: none;
   text-align: center;
 }
 
 button:hover{
-
-  /*border: solid black;*/
   border-radius: 10px;
   animation-name: buttonGrow;
   animation-duration: 0.5s;

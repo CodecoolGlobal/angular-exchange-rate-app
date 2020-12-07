@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Exchange} from '../../../model/exchange/exchange';
 import {NotificationService} from '../../../shared/services/notification/notification.service';
 import {DataService} from '../../../shared/services/apiData/data.service';
